@@ -1,4 +1,3 @@
-Claro, puedo ayudarte a crear un `README.md` para tu proyecto **AegisPazz** basado en los archivos que me compartiste. Aquí tienes un ejemplo completo y profesional:
 
 ````markdown
 # AegisPazz
@@ -87,9 +86,4 @@ Este proyecto está bajo la licencia **MIT**. Consulta el archivo LICENSE para m
 
 **AegisPazz v1.1.0** – Tu escudo digital contra las amenazas cibernéticas.
 
-```
 
-Si quieres, puedo hacer otra versión más **corta y visual** para que sea más atractiva al presentarlo en GitHub, con badges y capturas de pantalla.  
-
-¿Quieres que haga esa versión también?
-```
