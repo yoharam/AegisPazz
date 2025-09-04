@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AegisPazz - Gestor de Contraseñas Seguro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header">
+                <div class="logo">
+                    <div class="shield-icon"><img src="/images/logo-removebg-preview.png" alt="Logo AegisPazz" width="80"></div>
+                    <div class="logo-text">AegisPazz</div>
+                </div>
+                <div class="tagline">Tu escudo digital contra las amenazas cibernéticas</div>
+            </div>
+        </header>
+
+        <main>
+            <div class="main-content">
+                <div class="login-section">
+                    <div class="login-form">
+                        <h2>Acceso Seguro</h2>
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="email">Correo Electrónico</label>
+                                <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Contraseña Maestra</label>
+                                <input type="password" id="password" name="password" required placeholder="••••••••">
+                            </div>
+                            <button type="submit" class="btn-primary" onclick="window.location.href='dashboard.html'">
+                                Acceder a la Bóveda
+                                <span class="loading-dots">...</span>
+                            </button>
+                            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="features-section">
+                    <div class="feature-card">
+                        <span class="feature-icon">🔐</span>
+                        <div class="feature-title">Encriptación AES-256</div>
+                        <div class="feature-description">Tus contraseñas están protegidas con encriptación militar de grado superior.</div>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🌐</span>
+                        <div class="feature-title">Sincronización Segura</div>
+                        <div class="feature-description">Accede a tus contraseñas desde cualquier dispositivo de forma segura.</div>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">⚡</span>
+                        <div class="feature-title">Generador de Contraseñas</div>
+                        <div class="feature-description">Crea contraseñas ultra seguras con un solo clic para cada aplicación.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="benefits-section">
+                <h3>¿Por qué elegir AegisPazz?</h3>
+                <ul>
+                    <li>✨ Nunca más olvides una contraseña</li>
+                    <li>🛡️ Protege tu información personal</li>
+                    <li>📱 Acceso seguro desde cualquier dispositivo</li>
+                    <li>⚡ Inicio de sesión automático</li>
+                    <li>🔄 Sincronización en tiempo real</li>
+                </ul>
+            </div>
+
+            <div class="testimonials-section">
+                <h3>Lo que dicen nuestros usuarios</h3>
+                <div class="testimonial-card">
+                    ⭐⭐⭐⭐⭐ "Ahora me siento completamente seguro usando AegisPazz en todos mis dispositivos. La interfaz es intuitiva y la seguridad es excepcional." — Juan P.
+                </div>
+                <div class="testimonial-card">
+                    ⭐⭐⭐⭐⭐ "Sencillo, confiable y elegante. Justo lo que necesitaba para organizar todas mis contraseñas." — María G.
+                </div>
+                <div class="testimonial-card">
+                    ⭐⭐⭐⭐⭐ "La mejor inversión que he hecho para mi seguridad digital. Recomendado al 100%." — Carlos R.
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h3>Empieza gratis hoy</h3>
+                <p style="margin-bottom: 30px; opacity: 0.9; position: relative; z-index: 1;">Únete a miles de usuarios que ya protegen sus datos</p>
+                <button class="btn-primary" onclick="window.location.href='register.html'">Crear cuenta gratuita</button>
+            </div>
+        </main>
+
+        <div class="version-info">
+            AegisPazz v2.0.0 • Más seguro, más rápido, más elegante
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 AegisPazz. Todos los derechos reservados.</p>
+        <nav>
+            <a href="#">Privacidad</a>
+            <a href="#">Soporte</a>
+            <a href="#">Acerca de</a>
+            <a href="#">Blog</a>
+        </nav>
+    </footer>
+</body>
+</html>

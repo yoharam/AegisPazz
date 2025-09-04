@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Completa de Intervalos Matemáticos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #2d3748;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+        
+        h3 {
+            color: #4a5568;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            border-left: 5px solid #4facfe;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        th {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background-color: #f7fafc;
+        }
+        
+        .interval-line {
+            font-family: monospace;
+            font-size: 1.2em;
+            margin: 10px 0;
+            padding: 10px;
+            background: #f7fafc;
+            border-radius: 5px;
+        }
+        
+        .ejemplo {
+            background: linear-gradient(45deg, #56ccf2 0%, #2f80ed 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .ejemplo h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .paso {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-radius: 10px;
+            border-left: 4px solid #f093fb;
+        }
+        
+        .formula {
+            font-weight: bold;
+            color: #e53e3e;
+            font-size: 1.1em;
+        }
+        
+        .tip {
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .ejercicio {
+            background: #edf2f7;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #38b2ac;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 5px;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .nav {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .nav button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔢 Guía Completa de Intervalos Matemáticos</h1>
+        
+        <div class="nav">
+            <button onclick="mostrarSeccion('teoria')">📚 Teoría</button>
+            <button onclick="mostrarSeccion('tipos')">📊 Tipos</button>
+            <button onclick="mostrarSeccion('ejemplos')">💡 Ejemplos</button>
+            <button onclick="mostrarSeccion('ejercicios')">✏️ Ejercicios</button>
+            <button onclick="mostrarSeccion('todas')">🔍 Ver Todo</button>
+        </div>
+
+        <div id="teoria" class="section">
+            <h2>📚 ¿Qué son los Intervalos?</h2>
+            <p>Un <strong>intervalo</strong> es un conjunto de números reales que se encuentran entre dos valores dados, llamados extremos del intervalo.</p>
+            
+            <h3>Símbolos Importantes:</h3>
+            <ul>
+                <li><strong>( )</strong> Paréntesis = El extremo NO está incluido</li>
+                <li><strong>[ ]</strong> Corchetes = El extremo SÍ está incluido</li>
+                <li><strong>●</strong> Punto cerrado = Incluido en la recta numérica</li>
+                <li><strong>○</strong> Punto abierto = NO incluido en la recta numérica</li>
+            </ul>
+        </div>
+
+        <div id="tipos" class="section">
+            <h2>📊 Tipos de Intervalos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Notación</th>
+                        <th>Tipo</th>
+                        <th>Desigualdad</th>
+                        <th>Descripción</th>
+                        <th>Representación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>(a,b)</td>
+                        <td>Abierto</td>
+                        <td>a < x < b</td>
+                        <td>Extremos NO incluidos</td>
+                        <td>○————○</td>
+                    </tr>
+                    <tr>
+                        <td>[a,b]</td>
+                        <td>Cerrado</td>
+                        <td>a ≤ x ≤ b</td>
+                        <td>Extremos SÍ incluidos</td>
+                        <td>●————●</td>
+                    </tr>
+                    <tr>
+                        <td>(a,b]</td>
+                        <td>Semiabierto izq.</td>
+                        <td>a < x ≤ b</td>
+                        <td>Izquierda NO, derecha SÍ</td>
+                        <td>○————●</td>
+                    </tr>
+                    <tr>
+                        <td>[a,b)</td>
+                        <td>Semiabierto der.</td>
+                        <td>a ≤ x < b</td>
+                        <td>Izquierda SÍ, derecha NO</td>
+                        <td>●————○</td>
+                    </tr>
+                    <tr>
+                        <td>(-∞,a)</td>
+                        <td>Infinito izq. abierto</td>
+                        <td>x < a</td>
+                        <td>Menores que a</td>
+                        <td>←——○</td>
+                    </tr>
+                    <tr>
+                        <td>(-∞,a]</td>
+                        <td>Infinito izq. cerrado</td>
+                        <td>x ≤ a</td>
+                        <td>Menores o iguales a a</td>
+                        <td>←——●</td>
+                    </tr>
+                    <tr>
+                        <td>(a,+∞)</td>
+                        <td>Infinito der. abierto</td>
+                        <td>x > a</td>
+                        <td>Mayores que a</td>
+                        <td>○——→</td>
+                    </tr>
+                    <tr>
+                        <td>[a,+∞)</td>
+                        <td>Infinito der. cerrado</td>
+                        <td>x ≥ a</td>
+                        <td>Mayores o iguales a a</td>
+                        <td>●——→</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="ejemplos" class="section">
+            <h2>💡 Ejemplos Paso a Paso</h2>
+            
+            <div class="ejemplo">
+                <h3>Ejemplo 1: (2,5)</h3>
+                <div class="paso">
+                    <strong>Paso 1:</strong> Identificar tipo<br>
+                    Los paréntesis ( ) indican que es un <span class="formula">intervalo abierto</span>
+                </div>
+                <div class="paso">
+                    <strong>Paso 2:</strong> Escribir desigualdad<br>
+                    <span class="formula">2 < x < 5</span>
+                </div>
+                <div class="paso">
+                    <strong>Paso 3:</strong> Representar en recta<br>
+                    <div class="interval-line">○————————○<br>&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5</div>
+                </div>
+                <div class="paso">
+                    <strong>Descripción:</strong> Todos los números reales mayores que 2 y menores que 5
+                </div>
+            </div>
+
+            <div class="ejemplo">
+                <h3>Ejemplo 2: [0,3)</h3>
+                <div class="paso">
+                    <strong>Paso 1:</strong> Identificar tipo<br>
+                    Corchete [ y paréntesis ) = <span class="formula">intervalo semiabierto por la derecha</span>
+                </div>
+                <div class="paso">
+                    <strong>Paso 2:</strong> Escribir desigualdad<br>
+                    <span class="formula">0 ≤ x < 3</span>
+                </div>
+                <div class="paso">
+                    <strong>Paso 3:</strong> Representar en recta<br>
+                    <div class="interval-line">●————————○<br>&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3</div>
+                </div>
+                <div class="paso">
+                    <strong>Descripción:</strong> Todos los números reales desde 0 (incluido) hasta 3 (no incluido)
+                </div>
+            </div>
+        </div>
+
+        <div id="ejercicios" class="section">
+            <h2>✏️ Ejercicios de Tu Lista</h2>
+            
+            <div class="ejercicio">
+                <strong>4. Números mayores o iguales a 1 y menores que 7:</strong>
+                <button onclick="mostrarRespuesta('resp4')">Ver Respuesta</button>
+                <div id="resp4" class="hidden">
+                    <p><strong>Respuesta:</strong> [1,7)</p>
+                    <p><strong>Explicación:</strong> "Mayores o iguales" = corchete [, "menores que" = paréntesis )</p>
+                </div>
+            </div>
+
+            <div class="ejercicio">
+                <strong>5. [3,6] - Tipo de intervalo:</strong>
+                <button onclick="mostrarRespuesta('resp5')">Ver Respuesta</button>
+                <div id="resp5" class="hidden">
+                    <p><strong>Respuesta:</strong> Intervalo cerrado</p>
+                    <p><strong>Explicación:</strong> Ambos extremos tienen corchetes, por lo tanto están incluidos</p>
+                </div>
+            </div>
+
+            <div class="ejercicio">
+                <strong>7. Números mayores que -3 y menores que 5:</strong>
+                <button onclick="mostrarRespuesta('resp7')">Ver Respuesta</button>
+                <div id="resp7" class="hidden">
+                    <p><strong>Respuesta:</strong> (-3,5)</p>
+                    <p><strong>Explicación:</strong> "Mayores que" y "menores que" (sin igualdad) = paréntesis en ambos</p>
+                </div>
+            </div>
+
+            <div class="ejercicio">
+                <strong>8. Entre 0 y 4, incluyendo 4 pero no 0:</strong>
+                <button onclick="mostrarRespuesta('resp8')">Ver Respuesta</button>
+                <div id="resp8" class="hidden">
+                    <p><strong>Respuesta:</strong> (0,4]</p>
+                    <p><strong>Explicación:</strong> 0 no incluido = paréntesis (, 4 incluido = corchete ]</p>
+                </div>
+            </div>
+
+            <div class="ejercicio">
+                <strong>13. Números menores o iguales a -5:</strong>
+                <button onclick="mostrarRespuesta('resp13')">Ver Respuesta</button>
+                <div id="resp13" class="hidden">
+                    <p><strong>Respuesta:</strong> (-∞,-5]</p>
+                    <p><strong>Explicación:</strong> Desde infinito negativo hasta -5 (incluido)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tip">
+            <strong>💡 Consejos para Resolver:</strong><br>
+            1. Lee cuidadosamente las palabras clave: "mayor que", "menor o igual", etc.<br>
+            2. "Mayor/menor QUE" = paréntesis ( )<br>
+            3. "Mayor/menor o IGUAL QUE" = corchetes [ ]<br>
+            4. Infinito (∞) siempre usa paréntesis<br>
+            5. En la recta: ● = incluido, ○ = no incluido
+        </div>
+    </div>
+
+    <script>
+        function mostrarSeccion(seccion) {
+            const secciones = ['teoria', 'tipos', 'ejemplos', 'ejercicios'];
+            
+            if (seccion === 'todas') {
+                secciones.forEach(s => {
+                    document.getElementById(s).style.display = 'block';
+                });
+            } else {
+                secciones.forEach(s => {
+                    document.getElementById(s).style.display = s === seccion ? 'block' : 'none';
+                });
+            }
+        }
+
+        function mostrarRespuesta(id) {
+            const elemento = document.getElementById(id);
+            if (elemento.classList.contains('hidden')) {
+                elemento.classList.remove('hidden');
+            } else {
+                elemento.classList.add('hidden');
+            }
+        }
+
+        // Mostrar todas las secciones por defecto
+        mostrarSeccion('todas');
+    </script>
+</body>
+</html>

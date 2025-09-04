@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AegisPazz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar mejorado -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div><img src="/images/logo2.png" alt="Logo AegisPazz" width="50"></div>
+                    <span style=" color: #940000;">AegisPazz</span>
+                </div>
+                <div class="user-info">
+                    <div class="user-name">Juan Pérez</div>
+                    <div class="user-email">juan@email.com</div>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Principal</div>
+                    <a href="#" class="active">
+                        <span class="nav-icon">📊</span>
+                        Dashboard
+                    </a>
+                    <a href="pages/boveda.html">
+                        <span class="nav-icon">🔐</span>
+                        Bóveda de Contraseñas
+                    </a>
+                    <a href="pages/generador.html">
+                        <span class="nav-icon">⚡</span>
+                        Generador
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Gestión</div>
+                    <a href="#">
+                        <span class="nav-icon">📁</span>
+                        Categorías
+                    </a>
+                    <a href="#">
+                        <span class="nav-icon">🛡️</span>
+                        Seguridad
+                    </a>
+                    <a href="#">
+                        <span class="nav-icon">📈</span>
+                        Reportes
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Configuración</div>
+                    <a href="#">
+                        <span class="nav-icon">⚙️</span>
+                        Ajustes
+                    </a>
+                    <a href="#">
+                        <span class="nav-icon">❓</span>
+                        Soporte
+                    </a>
+                </div>
+
+                <a href="index.html" class="logout">
+                    <span class="nav-icon">🚪</span>
+                    Cerrar Sesión
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content mejorado -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-top">
+                    <div>
+                        <h1 class="main-title">Dashboard</h1>
+                        <div class="breadcrumb">
+                            <span>🏠</span>
+                            <span>Panel de Control</span>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <a href="#" class="btn-secondary">
+                            <span>🔄</span>
+                            Sincronizar
+                        </a>
+                        <a href="#" class="btn-secondary">
+                            <span>📥</span>
+                            Exportar
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <!-- Panel de estadísticas mejorado -->
+                <div class="stats-panel">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon">🔑</div>
+                        </div>
+                        <div class="stat-value">123</div>
+                        <div class="stat-label">Contraseñas Guardadas</div>
+                        <div class="stat-change positive">
+                            <span>↗️</span>
+                            <span>+5 este mes</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card yellow">
+                        <div class="stat-header">
+                            <div class="stat-icon">⚠️</div>
+                        </div>
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Alertas de Seguridad</div>
+                        <div class="stat-change negative">
+                            <span>⚠️</span>
+                            <span>Requiere atención</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card green">
+                        <div class="stat-header">
+                            <div class="stat-icon">✅</div>
+                        </div>
+                        <div class="stat-value">95%</div>
+                        <div class="stat-label">Puntuación de Seguridad</div>
+                        <div class="stat-change positive">
+                            <span>↗️</span>
+                            <span>+2% esta semana</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card blue">
+                        <div class="stat-header">
+                            <div class="stat-icon">📅</div>
+                        </div>
+                        <div class="stat-value">31/08</div>
+                        <div class="stat-label">Última Sesión</div>
+                        <div class="stat-change">
+                            <span>🕐</span>
+                            <span>Hace 2 horas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráficos mejorados -->
+                <div class="charts-panel">
+                    <div class="chart-card">
+                        <h3 class="chart-title">
+                            <span>📈</span>
+                            Seguridad de Contraseñas
+                        </h3>
+                        <div class="chart-container">
+                            <canvas id="passwordStrengthChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <h3 class="chart-title">
+                            <span>📊</span>
+                            Categorías
+                        </h3>
+                        <div class="chart-container">
+                            <canvas id="categoriesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actividad reciente -->
+                <div class="activity-section">
+                    <h3 class="section-title">
+                        <span>🕐</span>
+                        Actividad Reciente
+                    </h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">🔑</div>
+                            <div class="activity-content">
+                                <div class="activity-title">Nueva contraseña agregada para Gmail</div>
+                                <div class="activity-time">Hace 2 horas</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">⚠️</div>
+                            <div class="activity-content">
+                                <div class="activity-title">Contraseña débil detectada en Facebook</div>
+                                <div class="activity-time">Hace 1 día</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🔄</div>
+                            <div class="activity-content">
+                                <div class="activity-title">Sincronización completada</div>
+                                <div class="activity-time">Hace 2 días</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acciones rápidas -->
+                <div class="quick-actions">
+                    <a href="pages/generador.html" class="action-card">
+                        <span class="action-icon">⚡</span>
+                        <div class="action-title">Generar Contraseña</div>
+                        <div class="action-desc">Crea una contraseña segura</div>
+                    </a>
+                    <a href="pages/boveda.html" class="action-card">
+                        <span class="action-icon">🔐</span>
+                        <div class="action-title">Agregar Cuenta</div>
+                        <div class="action-desc">Guardar nueva contraseña</div>
+                    </a>
+                    <a href="#" class="action-card">
+                        <span class="action-icon">📊</span>
+                        <div class="action-title">Análisis de Seguridad</div>
+                        <div class="action-desc">Revisar vulnerabilidades</div>
+                    </a>
+                    <a href="#" class="action-card">
+                        <span class="action-icon">📥</span>
+                        <div class="action-title">Importar Datos</div>
+                        <div class="action-desc">Desde otro gestor</div>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
