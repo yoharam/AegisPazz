@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+
 :root {
   --primary-red: #dc2626;
   --primary-red-dark: #991b1b;
@@ -21,12 +22,40 @@
 }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: Fuente;
   background: var(--bg-dark);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
 }
+
+
+.shield-icon img{
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+@font-face {
+  font-family: "Fuente";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/trajan-pro-webfont/TrajanPro-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Trajan Pro Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Trajan Pro Bold"), url("TrajanPro-Bold.woff") format("woff");
+}
+
 @font-face {
   font-family: "Mifuente"; /* Un nombre que elijas */
   src: url("/golden_varsity/Golden\ Varsity\ Outline.ttf") format("woff2"); /* La ruta a tu archivo de fuente */

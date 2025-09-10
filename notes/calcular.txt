@@ -1,0 +1,20 @@
+Sí, la **seguridad de una contraseña** se puede expresar en **bits de entropía**, que indican cuán impredecible es la contraseña. Esto se calcula generalmente así:
+
+$$
+\text{Entropía (bits)} = \log_2(N^L)
+$$
+
+Donde:
+
+* $N$ = número de posibles caracteres que se pueden usar (por ejemplo, 26 letras minúsculas, 26 mayúsculas, 10 números, símbolos).
+* $L$ = longitud de la contraseña.
+
+Por ejemplo, si tu contraseña tiene **8 caracteres** usando **letras mayúsculas y minúsculas + números (62 caracteres posibles)**:
+
+$$
+\text{Entropía} = \log_2(62^8) \approx 47.6 \text{ bits}
+$$
+
+Esto significa que un atacante necesitaría en promedio $2^{47.6}$ intentos para adivinarla por fuerza bruta.
+
+Si quieres, puedo mostrarte una **tabla rápida de seguridad de contraseñas en bits** según longitud y tipo de caracteres. ¿Quieres que haga eso?

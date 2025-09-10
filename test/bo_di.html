@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureVault - Gestor de Contraseñas</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+
+        .search-bar {
+            display: flex;
+            margin: 20px 0;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-size: 16px;
+        }
+
+        .search-bar button {
+            padding: 12px 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-danger {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+
+        .password-list {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+
+        .password-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .password-item:last-child {
+            border-bottom: none;
+        }
+
+        .password-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .password-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .password-details h3 {
+            margin-bottom: 5px;
+        }
+
+        .password-details p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .password-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .password-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #777;
+            transition: color 0.3s ease;
+        }
+
+        .password-actions button:hover {
+            color: var(--secondary-color);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: var(--primary-color);
+        }
+
+        .close {
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #777;
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+
+        .password-strength {
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        .strength-weak {
+            color: var(--accent-color);
+        }
+
+        .strength-medium {
+            color: var(--warning-color);
+        }
+
+        .strength-strong {
+            color: var(--success-color);
+        }
+
+        .generate-btn {
+            margin-top: 5px;
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            cursor: pointer;
+            font-size: 13px;
+            text-align: left;
+            padding: 0;
+        }
+
+        .generate-btn:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .password-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .password-actions {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i>🔒</i> SecureVault
+                </div>
+                <div class="user-actions">
+                    <button class="btn btn-primary" id="addPasswordBtn">Agregar Contraseña</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar contraseñas...">
+            <button id="searchBtn">Buscar</button>
+        </div>
+
+        <div class="actions">
+            <div class="filter">
+                <select id="categoryFilter" class="btn">
+                    <option value="all">Todas las categorías</option>
+                    <option value="social">Redes Sociales</option>
+                    <option value="email">Correo Electrónico</option>
+                    <option value="finance">Finanzas</option>
+                    <option value="work">Trabajo</option>
+                    <option value="other">Otros</option>
+                </select>
+            </div>
+            <div class="sort">
+                <select id="sortSelect" class="btn">
+                    <option value="name">Ordenar por nombre</option>
+                    <option value="recent">Más recientes</option>
+                    <option value="category">Ordenar por categoría</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="password-list" id="passwordList">
+            <!-- Las contraseñas se cargarán aquí dinámicamente -->
+            <div class="empty-state" id="emptyState">
+                <i>🔍</i>
+                <h3>No hay contraseñas guardadas</h3>
+                <p>Comienza agregando tu primera contraseña</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para agregar/editar contraseñas -->
+    <div class="modal" id="passwordModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Agregar Nueva Contraseña</h2>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <form id="passwordForm">
+                <input type="hidden" id="passwordId">
+                <div class="form-group">
+                    <label for="serviceName">Servicio/Sitio web</label>
+                    <input type="text" id="serviceName" required placeholder="Ej: Gmail, Facebook">
+                </div>
+                <div class="form-group">
+                    <label for="username">Usuario/Correo electrónico</label>
+                    <input type="text" id="username" required placeholder="tu.correo@ejemplo.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" required placeholder="Ingresa tu contraseña">
+                    <div class="password-strength" id="passwordStrength"></div>
+                    <button type="button" class="generate-btn" id="generatePassword">Generar contraseña segura</button>
+                </div>
+                <div class="form-group">
+                    <label for="category">Categoría</label>
+                    <select id="category" class="btn">
+                        <option value="social">Redes Sociales</option>
+                        <option value="email">Correo Electrónico</option>
+                        <option value="finance">Finanzas</option>
+                        <option value="work">Trabajo</option>
+                        <option value="other">Otros</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notas (opcional)</label>
+                    <input type="text" id="notes" placeholder="Información adicional">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-danger" id="cancelBtn">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Contraseña</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Datos de ejemplo (en una aplicación real, estos datos vendrían de una base de datos segura)
+        let passwords = [
+            {
+                id: 1,
+                service: 'Facebook',
+                username: 'usuario@ejemplo.com',
+                password: 'fb_123456',
+                category: 'social',
+                notes: 'Cuenta personal',
+                createdAt: new Date('2023-01-15')
+            },
+            {
+                id: 2,
+                service: 'Gmail',
+                username: 'tucorreo@gmail.com',
+                password: 'gm_789012',
+                category: 'email',
+                notes: 'Cuenta principal',
+                createdAt: new Date('2023-02-20')
+            },
+            {
+                id: 3,
+                service: 'Banco Nacional',
+                username: 'usuario123',
+                password: 'bn_345678',
+                category: 'finance',
+                notes: '',
+                createdAt: new Date('2023-03-10')
+            }
+        ];
+
+        // Elementos del DOM
+        const passwordList = document.getElementById('passwordList');
+        const emptyState = document.getElementById('emptyState');
+        const passwordModal = document.getElementById('passwordModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const passwordForm = document.getElementById('passwordForm');
+        const passwordId = document.getElementById('passwordId');
+        const serviceName = document.getElementById('serviceName');
+        const username = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const passwordStrength = document.getElementById('passwordStrength');
+        const category = document.getElementById('category');
+        const notes = document.getElementById('notes');
+        const addPasswordBtn = document.getElementById('addPasswordBtn');
+        const closeModal = document.getElementById('closeModal');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const sortSelect = document.getElementById('sortSelect');
+        const generatePasswordBtn = document.getElementById('generatePassword');
+
+        // Inicializar la aplicación
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPasswords();
+            setupEventListeners();
+        });
+
+        // Configurar event listeners
+        function setupEventListeners() {
+            addPasswordBtn.addEventListener('click', () => {
+                modalTitle.textContent = 'Agregar Nueva Contraseña';
+                passwordForm.reset();
+                passwordId.value = '';
+                openModal();
+            });
+
+            closeModal.addEventListener('click', closeModalHandler);
+            cancelBtn.addEventListener('click', closeModalHandler);
+            
+            passwordForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (passwordId.value) {
+                    handleSaveEdit(e);
+                } else {
+                    handleAddPassword(e);
+                }
+            });
+
+            searchBtn.addEventListener('click', handleSearch);
+            searchInput.addEventListener('keyup', handleSearch);
+            
+            categoryFilter.addEventListener('change', handleFilterAndSort);
+            sortSelect.addEventListener('change', handleFilterAndSort);
+            
+            passwordInput.addEventListener('input', checkPasswordStrength);
+            generatePasswordBtn.addEventListener('click', generateSecurePassword);
+            
+            // Cerrar modal al hacer clic fuera del contenido
+            window.addEventListener('click', function(e) {
+                if (e.target === passwordModal) {
+                    closeModalHandler();
+                }
+            });
+        }
+
+        // Función para renderizar la lista de contraseñas
+        function renderPasswords(passwordsToRender = passwords) {
+            passwordList.innerHTML = '';
+            
+            if (passwordsToRender.length === 0) {
+                passwordList.appendChild(emptyState);
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            
+            passwordsToRender.forEach(pwd => {
+                const passwordItem = document.createElement('div');
+                passwordItem.className = 'password-item';
+                
+                // Obtener la primera letra del servicio para el icono
+                const serviceInitial = pwd.service.charAt(0).toUpperCase();
+                
+                passwordItem.innerHTML = `
+                    <div class="password-info">
+                        <div class="password-icon">${serviceInitial}</div>
+                        <div class="password-details">
+                            <h3>${pwd.service}</h3>
+                            <p>${pwd.username}</p>
+                            <p class="category">Categoría: ${getCategoryName(pwd.category)}</p>
+                            ${pwd.notes ? `<p class="notes">Notas: ${pwd.notes}</p>` : ''}
+                        </div>
+                    </div>
+                    <div class="password-actions">
+                        <button class="view-btn" data-id="${pwd.id}" title="Ver contraseña">👁️</button>
+                        <button class="edit-btn" data-id="${pwd.id}" title="Editar">✏️</button>
+                        <button class="delete-btn" data-id="${pwd.id}" title="Eliminar">🗑️</button>
+                    </div>
+                `;
+                
+                passwordList.appendChild(passwordItem);
+            });
+            
+            // Agregar event listeners a los botones
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', handleViewPassword);
+            });
+            
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', handleEditPassword);
+            });
+            
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', handleDeletePassword);
+            });
+        }
+
+        // Función para obtener el nombre de la categoría
+        function getCategoryName(categoryCode) {
+            const categories = {
+                'social': 'Redes Sociales',
+                'email': 'Correo Electrónico',
+                'finance': 'Finanzas',
+                'work': 'Trabajo',
+                'other': 'Otros'
+            };
+            return categories[categoryCode] || 'Otros';
+        }
+
+        // Función para abrir el modal
+        function openModal() {
+            passwordModal.style.display = 'flex';
+        }
+
+        // Función para cerrar el modal
+        function closeModalHandler() {
+            passwordModal.style.display = 'none';
+            passwordForm.reset();
+            passwordId.value = '';
+            passwordStrength.textContent = '';
+        }
+
+        // Función para agregar una nueva contraseña
+        function handleAddPassword(e) {
+            e.preventDefault();
+            
+            const newPassword = {
+                id: passwords.length > 0 ? Math.max(...passwords.map(p => p.id)) + 1 : 1,
+                service: serviceName.value,
+                username: username.value,
+                password: passwordInput.value,
+                category: category.value,
+                notes: notes.value,
+                createdAt: new Date()
+            };
+            
+            passwords.push(newPassword);
+            renderPasswords();
+            closeModalHandler();
+        }
+
+        // Función para editar una contraseña existente
+        function handleEditPassword(e) {
+            const id = parseInt(e.target.getAttribute('data-id'));
+            const passwordToEdit = passwords.find(p => p.id === id);
+            
+            if (passwordToEdit) {
+                modalTitle.textContent = 'Editar Contraseña';
+                passwordId.value = passwordToEdit.id;
+                serviceName.value = passwordToEdit.service;
+                username.value = passwordToEdit.username;
+                passwordInput.value = passwordToEdit.password;
+                category.value = passwordToEdit.category;
+                notes.value = passwordToEdit.notes;
+                
+                checkPasswordStrength();
+                openModal();
+            }
+        }
+
+        // Función para guardar los cambios al editar
+        function handleSaveEdit(e) {
+            e.preventDefault();
+            
+            const id = parseInt(passwordId.value);
+            const index = passwords.findIndex(p => p.id === id);
+            
+            if (index !== -1) {
+                passwords[index] = {
+                    ...passwords[index],
+                    service: serviceName.value,
+                    username: username.value,
+                    password: passwordInput.value,
+                    category: category.value,
+                    notes: notes.value
+                };
+                
+                renderPasswords();
+                closeModalHandler();
+            }
+        }
+
+        // Función para eliminar una contraseña
+        function handleDeletePassword(e) {
+            const id = parseInt(e.target.getAttribute('data-id'));
+            
+            if (confirm('¿Estás seguro de que quieres eliminar esta contraseña?')) {
+                passwords = passwords.filter(p => p.id !== id);
+                renderPasswords();
+            }
+        }
+
+        // Función para ver una contraseña (mostrar/ocultar)
+        function handleViewPassword(e) {
+            const id = parseInt(e.target.getAttribute('data-id'));
+            const passwordItem = e.target.closest('.password-item');
+            const passwordText = passwordItem.querySelector('.password-details p:nth-child(2)');
+            const passwordObj = passwords.find(p => p.id === id);
+            
+            if (passwordText.textContent === passwordObj.username) {
+                passwordText.textContent = passwordObj.password;
+                e.target.textContent = '🙈';
+                e.target.title = 'Ocultar contraseña';
+            } else {
+                passwordText.textContent = passwordObj.username;
+                e.target.textContent = '👁️';
+                e.target.title = 'Ver contraseña';
+            }
+        }
+
+        // Función para buscar contraseñas
+        function handleSearch() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredPasswords = passwords.filter(p => 
+                p.service.toLowerCase().includes(searchTerm) || 
+                p.username.toLowerCase().includes(searchTerm) ||
+                p.category.toLowerCase().includes(searchTerm) ||
+                (p.notes && p.notes.toLowerCase().includes(searchTerm))
+            );
+            
+            renderPasswords(filteredPasswords);
+        }
+
+        // Función para filtrar y ordenar contraseñas
+        function handleFilterAndSort() {
+            const categoryValue = categoryFilter.value;
+            const sortValue = sortSelect.value;
+            
+            let filteredPasswords = passwords;
+            
+            // Filtrar por categoría
+            if (categoryValue !== 'all') {
+                filteredPasswords = filteredPasswords.filter(p => p.category === categoryValue);
+            }
+            
+            // Ordenar
+            switch(sortValue) {
+                case 'name':
+                    filteredPasswords = filteredPasswords.sort((a, b) => a.service.localeCompare(b.service));
+                    break;
+                case 'recent':
+                    filteredPasswords = filteredPasswords.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                    break;
+                case 'category':
+                    filteredPasswords = filteredPasswords.sort((a, b) => a.category.localeCompare(b.category));
+                    break;
+            }
+            
+            renderPasswords(filteredPasswords);
+        }
+
+        // Función para comprobar la fortaleza de la contraseña
+        function checkPasswordStrength() {
+            const password = passwordInput.value;
+            let strength = '';
+            let strengthClass = '';
+            
+            if (password.length === 0) {
+                passwordStrength.textContent = '';
+                return;
+            }
+            
+            // Comprobar fortaleza de la contraseña
+            if (password.length < 6) {
+                strength = 'Débil';
+                strengthClass = 'strength-weak';
+            } else if (password.length < 10) {
+                strength = 'Media';
+                strengthClass = 'strength-medium';
+            } else {
+                // Verificar si tiene mayúsculas, minúsculas, números y símbolos
+                const hasUpperCase = /[A-Z]/.test(password);
+                const hasLowerCase = /[a-z]/.test(password);
+                const hasNumbers = /\d/.test(password);
+                const hasSymbols = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+                
+                const requirementsMet = [hasUpperCase, hasLowerCase, hasNumbers, hasSymbols].filter(Boolean).length;
+                
+                if (requirementsMet >= 3) {
+                    strength = 'Fuerte';
+                    strengthClass = 'strength-strong';
+                } else if (requirementsMet >= 2) {
+                    strength = 'Media';
+                    strengthClass = 'strength-medium';
+                } else {
+                    strength = 'Débil';
+                    strengthClass = 'strength-weak';
+                }
+            }
+            
+            passwordStrength.textContent = `Fortaleza: ${strength}`;
+            passwordStrength.className = `password-strength ${strengthClass}`;
+        }
+
+        // Función para generar una contraseña segura
+        function generateSecurePassword() {
+            const length = 12;
+            const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{};:',.<>/?";
+            let password = "";
+            
+            for (let i = 0; i < length; i++) {
+                password += charset.charAt(Math.floor(Math.random() * charset.length));
+            }
+            
+            passwordInput.value = password;
+            passwordInput.type = "text"; // Mostrar la contraseña generada
+            
+            // Cambiar el botón para permitir ocultar la contraseña
+            generatePasswordBtn.textContent = "Ocultar contraseña";
+            generatePasswordBtn.onclick = function() {
+                if (passwordInput.type === "text") {
+                    passwordInput.type = "password";
+                    generatePasswordBtn.textContent = "Mostrar contraseña";
+                } else {
+                    passwordInput.type = "text";
+                    generatePasswordBtn.textContent = "Ocultar contraseña";
+                }
+            };
+            
+            checkPasswordStrength();
+        }
+    </script>
+</body>
+</html>
