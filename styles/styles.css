@@ -22,11 +22,12 @@
 }
 
 body {
-  font-family: Fuente;
+  font-family: "MiFuente";
   background: var(--bg-dark);
   color: var(--text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  font-size: large  ;
 }
 
 
@@ -45,19 +46,20 @@ body {
 @font-face {
   font-family: "Fuente";
   font-style: normal;
-  font-weight: normal;
+  font-weight: large;
   src: url("/trajan-pro-webfont/TrajanPro-Bold.woff") format("woff");
 }
 
 @font-face {
   font-family: "Trajan Pro Bold";
   font-style: normal;
-  font-weight: normal;
+  font-weight: bold;
   src: local("Trajan Pro Bold"), url("TrajanPro-Bold.woff") format("woff");
 }
 
 @font-face {
   font-family: "Mifuente"; /* Un nombre que elijas */
+  font-size: large;
   src: url("/golden_varsity/Golden\ Varsity\ Outline.ttf") format("woff2"); /* La ruta a tu archivo de fuente */
   font-weight: normal; /* O el peso específico que tenga la fuente */
   font-style: normal; /* O el estilo específico que tenga la fuente */
