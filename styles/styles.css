@@ -20,8 +20,21 @@
   --shadow-glow: 0 0 30px rgba(220, 38, 38, 0.2);
 }
 
+@font-face {
+  font-family: "Trajan Pro Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Trajan Pro Regular"), url("TrajanPro-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Trajan Pro Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Trajan Pro Bold"), url("TrajanPro-Bold.woff") format("woff");
+}
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Mifuente";
   background: var(--bg-dark);
   color: var(--text-primary);
   line-height: 1.6;
